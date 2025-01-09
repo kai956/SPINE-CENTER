@@ -1,0 +1,204 @@
+/* Import Locomotive Scroll styles dynamically */
+@import 'locomotive-scroll/dist/locomotive-scroll.css' layer(locomotive);
+
+/* Rest of your styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reset default margins and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html.has-scroll-smooth {
+  overflow: hidden;
+}
+
+html.has-scroll-dragging {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body {
+  background-color: white;
+  color: white;
+  overflow-x: hidden;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+} 
+
+.c-scrollbar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 11px;
+  height: 100%;
+  transform-origin: center right;
+  transition: transform 0.3s, opacity 0.3s;
+  opacity: 0;
+}
+
+.c-scrollbar:hover {
+  transform: scaleX(1.45);
+}
+
+.c-scrollbar_thumb {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: white;
+  opacity: 0.5;
+  width: 7px;
+  border-radius: 10px;
+  margin: 2px;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.has-scroll-dragging .c-scrollbar_thumb {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+
+.has-scroll-smooth [data-scroll-container] {
+  min-height: 100vh;
+} 
+
+/* Add these to enable 3D transforms */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-x-180 {
+  transform: rotateX(180deg);
+}
+
+.rotate-x-0 {
+  transform: rotateX(0deg);
+} 
+
+@keyframes moveGradient {
+  0% {
+    mask-position: 0 0, 100% 0;
+    -webkit-mask-position: 0 0, 100% 0;
+  }
+  25% {
+    mask-position: 100% 0, 100% 0;
+    -webkit-mask-position: 100% 0, 100% 0;
+  }
+  50% {
+    mask-position: 100% 0, 100% 100%;
+    -webkit-mask-position: 100% 0, 100% 100%;
+  }
+  75% {
+    mask-position: 0 0, 0 100%;
+    -webkit-mask-position: 0 0, 0 100%;
+  }
+  100% {
+    mask-position: 0 0, 0 0;
+    -webkit-mask-position: 0 0, 0 0;
+  }
+} 
+
+@keyframes borderTravel {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes borderTravel2 {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes borderTravel3 {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes borderTravel4 {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.animate-borderTravel {
+  animation: borderTravel 2s ease-in-out forwards;
+} 
+
+section {
+  background-color: white;
+}
+
+[data-scroll-section] {
+  background-color: white;
+} 
+
+@keyframes scrolling-text {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scrolling-text {
+  animation: scrolling-text 20s linear infinite;
+} 
+
+@keyframes gradient-shift {
+  0% {
+    opacity: 0;
+    transform: translateY(0%);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-30%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-60%);
+  }
+}
+
+@keyframes gradient-shift-slow {
+  0% {
+    opacity: 0;
+    transform: translateY(-30%);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(30%);
+  }
+}
+
+.animate-gradient-shift {
+  animation: gradient-shift 15s ease-in-out infinite;
+}
+
+.animate-gradient-shift-slow {
+  animation: gradient-shift-slow 20s ease-in-out infinite;
+} 
+
+.has-scroll-smooth body {
+  overflow: hidden;
+} 

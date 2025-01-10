@@ -11,7 +11,7 @@ export default function Contact() {
   });
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-[#080A0F] via-[#0A1A2F] to-[#080A0F] relative overflow-hidden py-20" data-scroll-section>
+    <section className="min-h-screen bg-gradient-to-br from-[#080A0F] via-[#0A1A2F] to-[#080A0F] relative overflow-hidden py-20">
       {/* Decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl" />

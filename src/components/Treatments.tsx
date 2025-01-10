@@ -19,7 +19,6 @@ export default function Treatments() {
   return (
     <section 
       className="min-h-screen py-32 relative overflow-hidden"
-      data-scroll-section
     >
       {/* Soft dark gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900/90 to-indigo-900/90" />

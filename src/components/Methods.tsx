@@ -25,7 +25,7 @@ export default function Methods() {
   ];
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white transition-colors duration-700">
+    <section className="min-h-screen py-32 bg-gradient-to-b from-white via-gray-50 to-white transition-colors duration-700">
       {/* Methods overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-50/80 via-white/50 to-gray-50/80 transition-opacity duration-700" />
 
@@ -82,7 +82,7 @@ export default function Methods() {
             ))}
           </div>
 
-          <div className="mt-16" data-scroll data-scroll-speed="1">
+          <div className="mt-16">
             <AnimatedButton
               primaryText="ЗАКАЗАТЬ ЗВОНОК"
               secondaryText="ЗАПИСАТЬСЯ"

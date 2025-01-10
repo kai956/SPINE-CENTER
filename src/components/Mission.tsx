@@ -14,7 +14,6 @@ export default function Mission() {
   return (
     <section 
       className="relative min-h-screen py-32 bg-gradient-to-b from-white via-gray-50 to-white transition-colors duration-700"
-      data-scroll-section
     >
       {/* Light overlay for smooth transition */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-50/80 via-white/50 to-gray-50/80 transition-opacity duration-700" />
@@ -33,8 +32,8 @@ export default function Mission() {
       {/* Content */}
       <div className="container mx-auto px-4 h-full flex items-center relative z-10">
         <div className="grid md:grid-cols-2 gap-16 items-center w-full">
-          {/* Left side - Text (moved from right) */}
-          <div className="relative" data-scroll data-scroll-speed="0.5">
+          {/* Left side - Text */}
+          <div className="relative">
             <motion.h2 
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -81,15 +80,13 @@ export default function Mission() {
             </div>
           </div>
 
-          {/* Right side - Image Placeholder (moved from left) */}
+          {/* Right side - Image Placeholder */}
           <motion.div 
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="relative h-[500px] md:h-[700px] rounded-2xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200"
-            data-scroll
-            data-scroll-speed="1"
           >
             {/* Placeholder content */}
             <div className="absolute inset-0 flex items-center justify-center text-gray-400 text-lg">

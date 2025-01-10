@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-b from-gray-900 to-black text-gray-400 relative overflow-hidden" data-scroll-section>
+    <footer className="bg-gradient-to-b from-gray-900 to-black text-gray-400 relative overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-1/4 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl" />

@@ -25,11 +25,9 @@ export default function Methods() {
   ];
 
   return (
-    <section className="min-h-screen flex items-center relative overflow-hidden" data-scroll-section>
-      {/* Gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#F5F5F5] via-[#E8E8E8] to-[#DADADA]">
-        <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-transparent" />
-      </div>
+    <section className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white transition-colors duration-700">
+      {/* Methods overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-gray-50/80 via-white/50 to-gray-50/80 transition-opacity duration-700" />
 
       <div className="container mx-auto px-4 py-24 relative z-10">
         <div className="max-w-6xl mx-auto">

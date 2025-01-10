@@ -35,52 +35,38 @@ export default function Header() {
   // Determine text color based on scroll position
   useEffect(() => {
     const handleScroll = (e: any) => {
-      // Only run color detection on mobile
-      if (isMobile) {
-        const scrollPosition = window.scrollY;
-        const sections = document.querySelectorAll('section');
-        let shouldBeDark = false;
+      const scrollPosition = window.scrollY;
+      const sections = document.querySelectorAll('section');
+      let shouldBeDark = false;
 
-        sections.forEach((section) => {
-          const rect = section.getBoundingClientRect();
-          const sectionTop = rect.top + window.scrollY;
-          const sectionBottom = sectionTop + rect.height;
-          
-          if (scrollPosition >= sectionTop - 100 && scrollPosition < sectionBottom - 100) {
-            if (
-              section.querySelector('.text-gray-900') || // About section
-              section.querySelector('.text-gray-800') || // Methods section
-              section.querySelector('.text-gray-600')    // Mission section
-            ) {
-              shouldBeDark = true;
-            }
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        const sectionTop = rect.top + window.scrollY;
+        const sectionBottom = sectionTop + rect.height;
+        
+        if (scrollPosition >= sectionTop - 100 && scrollPosition < sectionBottom - 100) {
+          if (
+            section.querySelector('.text-gray-900') || // About section
+            section.querySelector('.text-gray-800') || // Methods section
+            section.querySelector('.text-gray-600')    // Mission section
+          ) {
+            shouldBeDark = true;
           }
-        });
+        }
+      });
 
-        setIsDark(shouldBeDark);
-      } else {
-        // On desktop, always set to dark
-        setIsDark(true);
-      }
+      setIsDark(shouldBeDark);
     };
 
-    // Only add scroll listener for mobile
-    if (isMobile) {
-      window.addEventListener('scroll', handleScroll);
-    } else {
-      // For desktop, just set dark mode
-      setIsDark(true);
-    }
+    window.addEventListener('scroll', handleScroll);
 
     // Initial check
     handleScroll({});
 
     return () => {
-      if (isMobile) {
-        window.removeEventListener('scroll', handleScroll);
-      }
+      window.removeEventListener('scroll', handleScroll);
     };
-  }, [isMobile]);
+  }, []);
 
   const setNumberRef = (index: number) => (el: HTMLSpanElement | null) => {
     numbersRef.current[index] = el;

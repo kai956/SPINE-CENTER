@@ -5,7 +5,8 @@ import Image from 'next/image';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import SplitType from 'split-type';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { GhostText } from './GhostText';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -39,7 +40,21 @@ const aboutData: AboutItem[] = [
 
 export default function About() {
   const [activeId, setActiveId] = useState<number>(1);
+  const [height, setHeight] = useState(0);
+  const [headerVisible, setHeaderVisible] = useState(false);
+
   const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, height], [height * 0.2, 0]);
+
+  useEffect(() => {
+    setHeight(window.innerHeight);
+  }, []);
+
+  useEffect(() => {
+    setHeaderVisible(true);
+  }, []);
 
   const handleItemClick = (id: number) => {
     setActiveId(id);
@@ -48,10 +63,14 @@ export default function About() {
   const activeItem = aboutData.find(item => item.id === activeId) || aboutData[0];
 
   return (
-    <section 
-      className="relative min-h-screen py-32 overflow-hidden"
-      data-scroll-section
+    <motion.section 
+      className="min-h-screen py-32 bg-gradient-to-b from-white via-gray-50 to-white transition-colors duration-700"
+      style={{ y }}
+      initial={{ y: height * 0.2 }}
+      transition={{ type: "spring", stiffness: 50 }}
     >
+      {/* Subtle overlay for depth */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-gray-50/50 to-white/80 transition-opacity duration-700" />
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Left side - Emoji Display */}
@@ -76,28 +95,21 @@ export default function About() {
 
           {/* Content Section */}
           <div className="h-full flex flex-col relative z-20">
-            <motion.h2 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ 
-                once: true,
-                amount: 0.3,
-                margin: "-100px"
-              }}
-              transition={{ 
-                duration: 0.8,
-                ease: "easeOut"
-              }}
-              className="text-5xl font-light text-gray-900 mb-16"
-              data-scroll
-              data-scroll-speed="0.5"
-            >
-              О компании
-            </motion.h2>
+            <div className="col-span-2">
+              <GhostText 
+                text="О компании"
+                className="text-5xl font-light text-gray-900 mb-16"
+                duration={0.8}
+                delay={0.2}
+                blurAmount={3}
+                brightness={1.2}
+                isVisible={headerVisible}
+              />
+            </div>
             
             <div className="space-y-0 flex-grow">
               {aboutData.map((item) => (
-                <div key={item.id} className="border-t border-blue-200/50">
+                <div key={item.id} className="relative border-t border-blue-200/50">
                   <button
                     onClick={() => handleItemClick(item.id)}
                     className="w-full py-8 text-left flex justify-between items-center group"
@@ -111,6 +123,20 @@ export default function About() {
                       ↓
                     </span>
                   </button>
+                  
+                  <motion.div 
+                    className="absolute bottom-0 left-0 h-[1px] bg-blue-600"
+                    initial={{ width: "0%" }}
+                    animate={{ 
+                      width: activeId === item.id ? "100%" : "0%",
+                    }}
+                    transition={{ 
+                      duration: 0.6, 
+                      ease: [0.65, 0, 0.35, 1],
+                      delay: activeId === item.id ? 0 : 0 
+                    }}
+                  />
+
                   <motion.div
                     initial={false}
                     animate={{ 
@@ -120,9 +146,15 @@ export default function About() {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <p className="pb-8 text-lg text-gray-600 leading-relaxed font-light tracking-wide">
-                      {item.content}
-                    </p>
+                    <GhostText
+                      text={item.content}
+                      className="pb-8 text-lg text-gray-600 leading-relaxed font-light tracking-wide whitespace-pre-wrap"
+                      duration={0.6}
+                      delay={0.2}
+                      blurAmount={3}
+                      brightness={1.2}
+                      isVisible={activeId === item.id}
+                    />
                   </motion.div>
                 </div>
               ))}
@@ -131,6 +163,6 @@ export default function About() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

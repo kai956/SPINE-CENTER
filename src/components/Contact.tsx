@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import AnimatedButton from './AnimatedButton';
 
 export default function Contact() {
   const [formData, setFormData] = useState({

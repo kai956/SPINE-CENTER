@@ -50,11 +50,9 @@ export default function Results() {
   };
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-[#080A0F] via-[#0A1A2F] to-[#080A0F] relative overflow-hidden" data-scroll-section>
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-500/5 rounded-full blur-3xl" />
-      </div>
+    <section className="min-h-screen py-32 bg-gradient-to-b from-gray-900 via-black to-gray-900 transition-colors duration-700">
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-gray-900/70 to-black/90 transition-opacity duration-700" />
 
       <div className="container mx-auto px-4 py-20 relative z-10">
         <h2 className="text-4xl font-medium mb-20 text-white text-center">

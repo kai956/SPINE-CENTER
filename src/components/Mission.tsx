@@ -13,9 +13,12 @@ const missionText = [
 export default function Mission() {
   return (
     <section 
-      className="relative min-h-screen py-32 overflow-hidden"
+      className="relative min-h-screen py-32 bg-gradient-to-b from-white via-gray-50 to-white transition-colors duration-700"
       data-scroll-section
     >
+      {/* Light overlay for smooth transition */}
+      <div className="absolute inset-0 bg-gradient-to-b from-gray-50/80 via-white/50 to-gray-50/80 transition-opacity duration-700" />
+
       {/* Section-specific overlay for depth */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/10 to-blue-900/10" 
         style={{ mixBlendMode: 'multiply' }} 

@@ -6,12 +6,15 @@ export default function useLocomotiveScroll() {
   const scrollRef = useRef(null);
 
   useEffect(() => {
+    // Only run on client side
     if (typeof window === 'undefined') return;
 
     const initScroll = async () => {
       try {
+        // Dynamic import of locomotive-scroll
         const LocomotiveScroll = (await import('locomotive-scroll')).default;
 
+        // Destroy existing instance if it exists
         if (scrollRef.current) {
           scrollRef.current.destroy();
         }
@@ -19,6 +22,7 @@ export default function useLocomotiveScroll() {
         const container = document.querySelector('[data-scroll-container]');
         if (!container) return;
 
+        // Create new instance
         scrollRef.current = new LocomotiveScroll({
           el: container as HTMLElement,
           smooth: true,
@@ -29,7 +33,7 @@ export default function useLocomotiveScroll() {
           smoothMobile: false,
         });
 
-        // Update Locomotive Scroll after a short delay
+        // Update after a short delay to ensure all content is loaded
         setTimeout(() => {
           scrollRef.current?.update();
         }, 500);
@@ -46,6 +50,7 @@ export default function useLocomotiveScroll() {
       window.addEventListener('load', initScroll);
     }
 
+    // Cleanup
     return () => {
       window.removeEventListener('load', initScroll);
       if (scrollRef.current) {
